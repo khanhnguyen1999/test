@@ -1,6 +1,6 @@
 import React from 'react'
 import Table from 'react-bootstrap/Table'
-export default function isTable({value,onClick}){
+export default function isTable({todos, handleDeleteTodo}){
     return(
         <Table striped bordered hover>
             <thead>
@@ -11,14 +11,12 @@ export default function isTable({value,onClick}){
             </thead>
             <tbody>
                 {
-                    value &&
-                    value.map((value,index)=>{
+                    todos.length > 0 &&
+                    todos.map((todo,index)=>{
                         return (
-                        <tr style={{cursor:'pointer'}} key={index}
-                        onClick={()=>onClick(value,index)}
-                        >
-                            <td>{index+1}</td>
-                            <td>{value.title}</td>
+                        <tr style={{cursor:'pointer'}} key={todo.id} onClick={() => handleDeleteTodo(todo,index)}>
+                            <td>{index}</td>
+                            <td>{todo.title}</td>
                         </tr>)
                     })
                 }
